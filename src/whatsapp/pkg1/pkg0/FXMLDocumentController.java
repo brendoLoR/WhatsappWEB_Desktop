@@ -7,10 +7,8 @@ package whatsapp.pkg1.pkg0;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
@@ -21,17 +19,20 @@ import javafx.scene.web.WebView;
 public class FXMLDocumentController implements Initializable {
 
     @FXML
-    private WebView webView;
-    private String html = "<scripts src=\"/../.build/momentLocales/pt.bfad6c58becd7836cab2.js.map\"></scripts></scripts>";
+    private WebView browser = new WebView();
+
+//    private String html = "<scripts src=\"/../.build/momentLocales/pt.bfad6c58becd7836cab2.js.map\"></scripts></scripts>";
+    private static String html = "https://web.whatsapp.com/";
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        final WebEngine engine = browser.getEngine();
 
+        engine.setJavaScriptEnabled(true);
+        engine.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36");
         
-        WebEngine engine = webView.getEngine();
-        //engine.load("https://web.whatsapp.com/");
-        engine.loadContent(html);
+        engine.load(html);
     }
 
 }
